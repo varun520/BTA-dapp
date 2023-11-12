@@ -1,0 +1,83 @@
+/* ProposalDetails.css */
+
+/* Style for the upvote button */
+.upvote-button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px; /* Add spacing between buttons */
+    cursor: pointer;
+  }
+  
+  /* Style for the downvote button */
+  .downvote-button {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .owner-button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .greyed-out-button {
+    opacity: 0.5; /* Reduce opacity to shade out the button */
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+  }
+  
+  /* Add this class to both upvote and downvote buttons */
+  .upvote-button.greyed-out-button,
+  .downvote-button.greyed-out-button {
+    background-color: #ccc; /* Use the desired grey color for the background */
+    color: #888; /* Text color for disabled state */
+  }
+  
+  /* Style for the link */
+  .link {
+    display: block; /* Push the link down to a new line */
+    margin-top: 20px; /* Add space between the link and buttons */
+  }
+  
+  /* Other custom styles for your component */
+  
+  /* ProposalDetails.css */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+p {
+  margin: 10px 0;
+}
+
+
+
+.greyed-out-button {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
