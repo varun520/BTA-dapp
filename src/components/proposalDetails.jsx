@@ -83,7 +83,7 @@ function ProposalDetails() {
         if (contractInstance) {
             try {
                 const tx = await contractInstance.vote(id, true);
-                tx.wait();
+                await tx.wait();
                 const stTokens = parseInt(stakedTokens)
                 setUpvotes(parseInt(upvotes) + (stTokens * stTokens));
 
@@ -97,7 +97,8 @@ function ProposalDetails() {
     const downVote = async () => {
         if (contractInstance) {
             try {
-                await contractInstance.vote(id, false);
+                const tx = await contractInstance.vote(id, false);
+                await tx.wait();
                 const stTokens = parseInt(stakedTokens)
                 setDownvotes(parseInt(downvotes) + (stTokens * stTokens));
             } catch (error) {
