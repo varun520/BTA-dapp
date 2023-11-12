@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import './App.css'
 
 import Home from './components/Home'
@@ -8,6 +9,7 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <>
+    <Toaster />
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />

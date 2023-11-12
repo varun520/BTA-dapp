@@ -89,7 +89,7 @@ export default function Home() {
             const tx = await contractInstance.becomeMember(stakeAmountTokens);
             await tx.wait();
             updateTokenBalance(currentAccount);
-            window.alert(`Successfully staked ${stakeAmountTokens} tokens.`);
+
             checkMembershipStatus();
         } catch (error) {
             console.error("Error staking tokens:", error);
@@ -142,6 +142,7 @@ export default function Home() {
             <div className="nav">
                 <h1>DAO for content moderation</h1>
                 <p><b>Your address:</b> {currentAccount}</p>
+
             </div>
 
             <div className="button-section">

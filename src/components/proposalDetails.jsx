@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import './ProposalDetails.css'
+import toast from 'react-hot-toast';
 const contractAddress = "0x1fD6567F326d90771702BBb27E5978D033A1589e";
 
 function ProposalDetails() {
@@ -14,6 +15,7 @@ function ProposalDetails() {
     const [upvotes, setUpvotes] = useState(0);
     const [downvotes, setDownvotes] = useState(0);
     const [isOwner, setIsOwner] = useState(false);
+
 
     const { id } = useParams();
 
@@ -36,6 +38,9 @@ function ProposalDetails() {
                     const memberTokensAsString = ethers.utils.formatUnits(newMemberTokens, 18);
                     setIsMember(parseFloat(memberTokensAsString) > 0);
                     setStakedTokens(memberTokensAsString);
+
+
+
                     window.ethereum.on('accountsChanged', async (newAccounts) => {
                         setCurrentAccount(newAccounts[0]);
 
@@ -50,6 +55,7 @@ function ProposalDetails() {
                         setIsMember(parseFloat(memberTokensAsString) > 0);
                         setStakedTokens(memberTokensAsString);
 
+
                     });
 
                 } catch (err) {
@@ -63,8 +69,8 @@ function ProposalDetails() {
 
     useEffect(() => {
         fetchVotes();
-    }, [contractInstance])
 
+    }, [contractInstance])
 
 
     const fetchVotes = async () => {
@@ -84,10 +90,12 @@ function ProposalDetails() {
             try {
                 const tx = await contractInstance.vote(id, true);
                 await tx.wait();
+                toast.success('Upvote successfull')
                 const stTokens = parseInt(stakedTokens)
                 setUpvotes(parseInt(upvotes) + (stTokens * stTokens));
 
             } catch (error) {
+                toast.error("You have already voted")
                 console.error('Error upvoting:', error);
 
             }
@@ -99,11 +107,13 @@ function ProposalDetails() {
             try {
                 const tx = await contractInstance.vote(id, false);
                 await tx.wait();
+                toast.success('Downvote successfull')
                 const stTokens = parseInt(stakedTokens)
                 setDownvotes(parseInt(downvotes) + (stTokens * stTokens));
             } catch (error) {
+                toast.error("Downvote failed")
                 console.error('Error downvoting:', error);
-                
+
             }
         }
     };
