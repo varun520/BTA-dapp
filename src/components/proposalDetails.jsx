@@ -84,7 +84,8 @@ function ProposalDetails() {
             try {
                 const tx = await contractInstance.vote(id, true);
                 tx.wait();
-                setUpvotes(upvotes + (stakedTokens * stakedTokens));
+                const stTokens = parseInt(stakedTokens)
+                setUpvotes(parseInt(upvotes) + (stTokens * stTokens));
 
             } catch (error) {
                 console.error('Error upvoting:', error);
@@ -97,7 +98,8 @@ function ProposalDetails() {
         if (contractInstance) {
             try {
                 await contractInstance.vote(id, false);
-                setDownvotes(downvotes + (stakedTokens * stakedTokens));
+                const stTokens = parseInt(stakedTokens)
+                setDownvotes(parseInt(downvotes) + (stTokens * stTokens));
             } catch (error) {
                 console.error('Error downvoting:', error);
                 
